@@ -1,15 +1,54 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:maps_flutter/pages/postos_page.dart';
+import 'package:maps_flutter/repositories/postos_repositories.dart';
+import 'package:maps_flutter/widgets/posto_detalhe.dart';
 
 class PostosController extends ChangeNotifier {
   double lat = 0.0;
   double long = 0.0;
   String erro = '';
-  double long1 = -43.2104872;
-  double lat1 = -22.951916;
+  double longFix = -43.2104872;
+  double latFix = -22.951916;
+  Set<Marker> markers = Set<Marker>();
+  late GoogleMapController _mapsController;
 
-  PostosController() {
+  /*PostosController() {
     getPosicao();
+  }*/
+
+  get mapsController => _mapsController;
+
+  onMapCreated(GoogleMapController gmc) async {
+    _mapsController = gmc;
+    getPosicao();
+    loadPostos();
+  }
+
+  //chamando os postos, poderia ser uma chamada a uma api ou banco de dados
+  loadPostos() {
+    final postos = PostosRepository().postos;
+    postos.forEach((posto) async {
+      markers.add(
+        Marker(
+          markerId: MarkerId(posto.nome),
+          position: LatLng(posto.latitude, posto.longitude),
+          icon: await BitmapDescriptor.fromAssetImage(
+            ImageConfiguration(),
+            'images/posto.png',
+          ),
+          onTap: () => {
+            showModalBottomSheet(
+              context: appKey.currentState!.context,
+              builder: (context) => PostoDetalhes(posto: posto),
+            )
+          },
+        ),
+      );
+    });
+    notifyListeners();
   }
 
   getPosicao() async {
@@ -17,6 +56,8 @@ class PostosController extends ChangeNotifier {
       Position posicao = await _posicaoAtual();
       lat = posicao.latitude;
       long = posicao.longitude;
+      _mapsController //lat é para localização em tempo real e lat1 é para uma fixa criada
+          .animateCamera(CameraUpdate.newLatLng(LatLng(lat, long)));
     } catch (e) {
       erro = e.toString();
     }

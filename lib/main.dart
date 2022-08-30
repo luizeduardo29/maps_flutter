@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_config/flutter_config.dart';
 import 'package:maps_flutter/pages/postos_page.dart';
-import 'package:maps_flutter/pages/teste.dart';
+import 'package:maps_flutter/pages/teste.dart'; //pagina para fazer os testes
 import 'package:maps_flutter/repositories/postos_repositories.dart';
 import 'package:provider/provider.dart';
 
@@ -20,9 +20,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Mapa Postos',
+      title: 'Postos Proximos',
       theme: ThemeData(
-        primarySwatch: Colors.purple,
+        primarySwatch: Colors.blue,
       ),
       home: PostosPage(),
     );

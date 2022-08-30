@@ -12,7 +12,8 @@ class PostosPage extends StatelessWidget {
     return Scaffold(
       key: appKey,
       appBar: AppBar(
-        title: Text('Minha Localização'),
+        leading: Icon(Icons.location_pin),
+        title: Text('Postos Proximos'),
       ),
       body: ChangeNotifierProvider<PostosController>(
         create: (context) => PostosController(),
@@ -21,12 +22,15 @@ class PostosPage extends StatelessWidget {
 
           return GoogleMap(
             initialCameraPosition: CameraPosition(
-              target: LatLng(local.lat1, local.long1),
-              zoom: 18,
+              target: LatLng(local.latFix, local.longFix),
+              //trocar para lat e long se o emulador conseguir puxar a localização do smartphone
+              zoom: 17,
             ),
             zoomControlsEnabled: true,
-            mapType: MapType.satellite,
+            mapType: MapType.normal,
             myLocationEnabled: true,
+            onMapCreated: local.onMapCreated,
+            markers: local.markers,
           );
         }),
       ),

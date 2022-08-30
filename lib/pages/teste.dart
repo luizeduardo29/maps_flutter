@@ -1,3 +1,5 @@
+//Pagina para fazer os testes no mapa
+
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -11,6 +13,7 @@ class mapaGoogle extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Mapa Google'),
+        centerTitle: true,
       ),
       body: const GoogleMap(
         initialCameraPosition: CameraPosition(
