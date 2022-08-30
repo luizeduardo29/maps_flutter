@@ -15,7 +15,7 @@ class mapaGoogle extends StatelessWidget {
       body: const GoogleMap(
         initialCameraPosition: CameraPosition(
           target: LatLng(-22.951916, -43.2104872),
-          zoom: 18,
+          zoom: 17,
         ),
         zoomControlsEnabled: true,
         mapType: MapType.satellite,
