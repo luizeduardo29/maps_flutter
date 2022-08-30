@@ -6,5 +6,7 @@ foram colocados alguns postos de gasolinas e clicando neles abre na tela as info
 ## Para utilização 
 
 Passo 1: Na pasta .envteste apague o "teste" e deixe só o .env
+
 Passo 2: Insira aonde esta "12345678" a key do google maps 
+
 Passo 3: Abra o arquivo "main" e execute
