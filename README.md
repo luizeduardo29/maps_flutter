@@ -3,7 +3,7 @@
 Nesta aplicação foi utilizado a o Google Maps e o Geolocator para pegar a localização do usuário e mostrar no Google Maps. Foi adicionado também pontos expecíficos aonde 
 foram colocados alguns postos de gasolinas e clicando neles abre na tela as informaçoes referente ao posto como Imagem, Nome e Endereço, sendo possivel também alterar os dados para fazer uma chamada no Banco de dados ou em uma API. 
 
-## Para utilização 
+## Para execução
 
 Passo 1: Na pasta .envteste apague o "teste" e deixe só o .env
 
